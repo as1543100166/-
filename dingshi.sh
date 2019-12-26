@@ -15,7 +15,7 @@ rm -f cron
 else
 echo "该任务已经存在，将会先删除再添加"
 sed -i '/'$myscript'/d' cron
-echo '30 1 * * * docker restart $(docker ps -a | awk '{ print $1}' | tail -n +2)' >> cron
+echo '1 12 * * * root $myscript' >> cron
 crontab cron
 rm -f cron
 fi
