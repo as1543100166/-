@@ -95,6 +95,11 @@ sysctl -p && sysctl --system
 ulimit_tune(){
 
 echo "1000000" > /proc/sys/fs/file-max
+sed -i '/fs.file-max/d' /etc/sysctl.conf
+cat >> '/etc/sysctl.conf' << EOF
+fs.file-max=1000000
+EOF
+
 ulimit -SHn 1000000 && ulimit -c unlimited
 echo "root     soft   nofile    1000000
 root     hard   nofile    1000000
@@ -126,6 +131,7 @@ else
   sed -i '/required pam_limits.so/d' /etc/pam.d/common-session
   echo "session required pam_limits.so" >>/etc/pam.d/common-session
 fi
+
 sed -i '/DefaultTimeoutStartSec/d' /etc/systemd/system.conf
 sed -i '/DefaultTimeoutStopSec/d' /etc/systemd/system.conf
 sed -i '/DefaultRestartSec/d' /etc/systemd/system.conf
@@ -143,16 +149,23 @@ DefaultLimitNOFILE=65535
 DefaultLimitNPROC=65535
 EOF
 
-systemd --daemon-reload
+systemctl daemon-reload
 
 }
 
 bbr(){
-  wget -N "http://sh.neko.sbs:1111/bbr/bbr.sh" -O bbr.sh && bash bbr.sh
+
+if uname -r|grep -q "^5."
+then
+    echo "已经是 5.x 内核，不需要更新"
+else
+    wget -N "http://sh.nekoneko.cloud/bbr/bbr.sh" -O bbr.sh && bash bbr.sh
+fi
+  
 }
 
 Update_Shell(){
-  wget -N "http://sh.neko.sbs:1111/tools.sh" -O tools.sh && chmod +x tools.sh && ./tools.sh
+  wget -N "http://sh.nekoneko.cloud/tools.sh" -O tools.sh && chmod +x tools.sh && ./tools.sh
 }
 
 get_opsy() {
@@ -234,6 +247,7 @@ get_system_info() {
   #tcpctrl=$(sysctl net.ipv4.tcp_congestion_control | awk -F ' ' '{print $3}')
   virt_check
 }
+
 menu() {
   echo -e "\
 ${Green_font_prefix}0.${Font_color_suffix} 升级脚本
