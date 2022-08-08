@@ -127,9 +127,9 @@ net.ipv4.tcp_synack_retries = 1
 net.ipv4.tcp_syncookies = 1
 net.ipv4.tcp_rfc1337 = 0
 net.ipv4.tcp_timestamps = 1
-net.ipv4.tcp_tw_reuse = 0
-net.ipv4.tcp_fin_timeout = 15
-net.ipv4.ip_local_port_range = 1024 65535
+net.ipv4.tcp_tw_reuse = 1
+net.ipv4.tcp_fin_timeout = 10
+net.ipv4.ip_local_port_range = 1024 65000
 net.ipv4.tcp_max_tw_buckets = 5000
 net.ipv4.tcp_fastopen = 3
 net.ipv4.tcp_rmem = 4096 87380 67108864
@@ -211,9 +211,5 @@ EOF
     sed -i '/required pam_limits.so/d' /etc/pam.d/common-session
     echo "session required pam_limits.so" >>/etc/pam.d/common-session
   fi
-  read -p "需要重启VPS后，才能生效系统优化配置，是否现在重启 ? [Y/n] :" yn
-  [ -z "${yn}" ] && yn="y"
-  if [[ $yn == [Yy] ]]; then
-    echo -e "[信息] VPS 重启中..."
-    reboot
-  fi
+  echo -e "[信息] VPS 重启中..."
+  reboot
