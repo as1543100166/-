@@ -83,8 +83,18 @@
   sed -i '/net.nf_conntrack_max/d' /etc/sysctl.d/99-sysctl.conf
   sed -i '/net.ipv4.tcp_sack/d' /etc/sysctl.d/99-sysctl.conf
   sed -i '/net.ipv4.tcp_fack/d' /etc/sysctl.d/99-sysctl.conf
+  sed -i '/net.ipv4.tcp_syn_retries/d' /etc/sysctl.d/99-sysctl.conf
+  sed -i '/net.netfilter.nf_conntrack_tcp_timeout_fin_wait/d' /etc/sysctl.d/99-sysctl.conf
+  sed -i '/net.netfilter.nf_conntrack_tcp_timeout_time_wait/d' /etc/sysctl.d/99-sysctl.conf
+  sed -i '/net.netfilter.nf_conntrack_tcp_timeout_close_wait/d' /etc/sysctl.d/99-sysctl.conf
+  sed -i '/net.netfilter.nf_conntrack_tcp_timeout_established/d' /etc/sysctl.d/99-sysctl.conf
 
   cat >'/etc/sysctl.d/99-sysctl.conf' <<EOF
+net.netfilter.nf_conntrack_tcp_timeout_fin_wait = 30
+net.netfilter.nf_conntrack_tcp_timeout_time_wait = 30
+net.netfilter.nf_conntrack_tcp_timeout_close_wait = 15
+net.netfilter.nf_conntrack_tcp_timeout_established = 900
+net.ipv4.tcp_syn_retries = 4
 net.ipv4.tcp_sack=1
 net.ipv4.tcp_fack=1
 net.ipv4.conf.all.route_localnet=1
