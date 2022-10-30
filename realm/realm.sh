@@ -74,7 +74,7 @@ function install(){
         rm -f /etc/xiandan/realm/full.json
     fi
     if [[ ${bit} == "amd64" ]];then
-        wget --no-check-certificate -P /etc/xiandan/realm sh.alhttdw.cn/xiandan/realm/x86/realm
+        wget --no-check-certificate -P /etc/xiandan/realm https://raw.githubusercontent.com/as1543100166/neiheyouhua/master/realm/realm
     else
         wget --no-check-certificate -P /etc/xiandan/realm sh.alhttdw.cn/xiandan/realm/arm/realm 
     fi
