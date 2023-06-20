@@ -68,7 +68,7 @@ function install(){
         apt-get install -y lsof
     fi
     rm -rf /etc/xiandan/realm.sh
-    wget --no-check-certificate -P /etc/xiandan sh.alhttdw.cn/xiandan/realm.sh
+    wget --no-check-certificate -P /etc/xiandan https://github.com/as1543100166/neiheyouhua/blob/master/realm/realm.sh
     if [ -f /etc/xiandan/realm/realm ]; then
         rm -f /etc/xiandan/realm/realm
         rm -f /etc/xiandan/realm/full.json
