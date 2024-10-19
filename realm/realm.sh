@@ -114,7 +114,7 @@ startService(){
     rm -rf /etc/xiandan/realm/${localPort}.json
     if [ ! -f /etc/xiandan/realm/full.json ]; then
         mkdir /etc/xiandan/realm
-        wget --no-check-certificate -P /etc/xiandan/realm -O /etc/xiandan/realm/full.json sh.alhttdw.cn/xiandan/realm/full.json
+        wget --no-check-certificate -P /etc/xiandan/realm -O /etc/xiandan/realm/full.json raw.githubusercontent.com/as1543100166/neiheyouhua/refs/heads/master/realm/full.json
     fi
     cp /etc/xiandan/realm/full.json /etc/xiandan/realm/${localPort}.json
     echo "
