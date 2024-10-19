@@ -76,7 +76,7 @@ function install(){
     if [[ ${bit} == "amd64" ]];then
         wget --no-check-certificate -P /etc/xiandan/realm https://raw.githubusercontent.com/as1543100166/neiheyouhua/master/realm/realm
     else
-        wget --no-check-certificate -P /etc/xiandan/realm sh.alhttdw.cn/xiandan/realm/arm/realm 
+        wget --no-check-certificate -P /etc/xiandan/realm https://raw.githubusercontent.com/as1543100166/neiheyouhua/master/realm/realm
     fi
     chmod +x /etc/xiandan/realm/realm
     if [[ -z $1 ]];then
@@ -85,8 +85,6 @@ function install(){
 }
 function uninstall(){
     rm -rf /etc/xiandan/realm*
-    wget --no-check-certificate -P /etc/xiandan sh.alhttdw.cn/xiandan/realm.do
-    chmod +x /etc/xiandan/realm.do
     exit 0
 }
 disable_selinux(){
