@@ -1,7 +1,6 @@
 {
     "log": {
-        "level": "warn",
-        "output": "realm.log"
+        "level": "off"
     },
     "dns": {
       "mode": "ipv4_and_ipv6",
@@ -17,7 +16,7 @@
       "fast_open": true,
       "tcp_timeout": 5,
       "udp_timeout": 30,
-      "send_proxy": false,
+      "send_proxy": true,
       "send_proxy_version": 2,
       "accept_proxy": false,
       "accept_proxy_timeout": 5
